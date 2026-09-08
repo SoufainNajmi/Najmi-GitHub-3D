@@ -1,0 +1,35 @@
+name: Generate Najmi GitHub 3D
+
+on:
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+    inputs:
+      theme:
+        description: Theme to render
+        required: false
+        default: najmi-dark
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Generate profile assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.NAJMI_GITHUB_TOKEN || github.token }}
+          GITHUB_USERNAME: ${{ github.repository_owner }}
+        run: npm run generate -- --theme "${{ inputs.theme || 'najmi-dark' }}"
+      - name: Commit generated SVG files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: update Najmi GitHub 3D assets'
+          file_pattern: output/*.svg

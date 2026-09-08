@@ -1,0 +1,11 @@
+github:
+  username: your-username
+theme:
+  name: najmi-neon
+visualization:
+  perspective: true
+  animation: false
+statistics:
+  enabled: true
+output:
+  directory: ./output

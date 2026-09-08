@@ -1,0 +1,15 @@
+github:
+  username: YOUR_USERNAME
+
+theme:
+  name: najmi-dark
+
+visualization:
+  perspective: true
+  animation: false
+
+statistics:
+  enabled: true
+
+output:
+  directory: ./output

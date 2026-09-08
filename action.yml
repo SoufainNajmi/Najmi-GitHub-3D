@@ -1,0 +1,21 @@
+name: Najmi GitHub 3D
+description: Generate GitHub contribution 3D SVG profile assets and statistics.
+author: Soufain Najmi
+inputs:
+  username:
+    description: GitHub username to visualize
+    required: true
+  theme:
+    description: Theme name
+    required: false
+    default: najmi-dark
+  output-directory:
+    description: Generated asset directory
+    required: false
+    default: output
+runs:
+  using: node20
+  main: dist/cli.js
+branding:
+  icon: bar-chart-2
+  color: blue
